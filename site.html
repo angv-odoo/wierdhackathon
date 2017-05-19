@@ -3,12 +3,16 @@
   <head>
     <style>
        #map {
-        height: 400px;
-        width: 50%;
+        height: 600px;
+        width: 80%;
        }
     </style>
   </head>
   <script type="text/javascript" src="libs/angular/angular.js"></script>
+  <div id="header">
+		<input type="radio" value="mortal" checked> Mortal
+		<input type="radio" value="government"> Government
+	</div>
   <body ng-controller="map">
   <p ng-repeat="place in places">{{place.lat}}</p>
     <ul ng-repeat="place in places">

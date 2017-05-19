@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			@font-face {
+				font-family: Montserrat;
+				src: url(Montserrat-Regular.ttf);
+			}
+			@font-face {
+				font-family: Roboto;
+				src: url(Roboto-Regular.ttf);
+			}
+			#sidebar{
+				height: 600px;
+				width: 50%;
+				float: left;
+				background-color: rgba(51, 87, 134, 100);
+				color: white;
+				//text-align: center;
+			}
+			input, textarea{
+				display: block;
+				margin: auto;
+				width: 100%;
+				border-radius: 7px;
+				border: none;
+				margin-bottom: 20px;
+			}
+			button {
+				display: block;
+				margin: auto;
+				width: 100%;
+				border-radius: 7px;
+				border: none;
+				background-color: #FB3640;
+				color: white;
+				font-family: Roboto;
+				font-size: 16px;
+			}
+			#report {
+				width: 70%;
+				margin: auto;
+				font-family: Roboto;
+			}
+			#locateDiv, #authenticateDiv, #messageDiv {
+				margin: auto;
+			}
+			#locateDiv, #authenticateDiv{
+				width: 90%;
+			}
+			#authenticateDiv{
+				margin-top: 25px;
+			}
+			#messageDiv{
+				margin-top: 45px;
+			}
+			#placename {
+				font-size: 28px;
+				font-family: Montserrat;
+				text-align: center;
+			}
+			#authenticate, #message{
+				font-size: 10px;
+			}
+			#locationInput{
+				height: 28px;
+			}
+			#locationButton{
+				width: 90%;
+			}
+			#locationButton, #reportButton{
+				height: 30px;
+			}
+			#messageInput{
+				height: 150px;
+			}
+			#authenticateButton {
+				background-color: #247BA0;
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="sidebar">
+			<p id="placename">NARVA</p>
+			<div id="report">
+				<div id="locateDiv">
+					<input type="text" id="locationInput" placeholder="  Location">
+					<button type="button" id="locationButton">Locate</button>
+				</div>
+				<div id="authenticateDiv">
+					<p id="authenticate">Authenticate</p>
+					<button type="button" id="authenticateButton">Authenticate with ID card</button>
+				</div>
+				<div id="messageDiv">
+					<p id="message">MESSAGE</p>
+					<textarea type="text" id="messageInput">
+					</textarea>
+					<button type="button" id="reportButton">Report</button>
+				</div>
+			</div>
+			<div id="vote">
+			</div>
+		</div>
+	</body>
+</html>

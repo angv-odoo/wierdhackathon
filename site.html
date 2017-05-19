@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="minmax">
   <head>
     <style>
        #map {
@@ -8,9 +8,18 @@
        }
     </style>
   </head>
-  <body>
+  <script type="text/javascript" src="libs/angular/angular.js"></script>
+  <script src="js/main.js"></script>
+  <body ng-controller="map">
+  <p ng-repeat="place in places">{{place.lat}}</p>
+    <ul ng-repeat="place in places">
+  <li ng-repeat="(key, val) in place">
+    {{key}}: <span id="1{{key}}" >{{val.lat}} </span><span id="2{{key}}">{{val.ling}}</span><span id="3{{key}}">{{val.wat}}</span>
+  </li>
+</ul>
+
     <h3>My Google Maps Demo</h3>
-    <div id="map"></div>
+    <div id="map" ></div>
     <script>
       function initMap() {
         var uluru = {lat: 59.4370, lng: 24.7536};
@@ -18,10 +27,24 @@
           zoom: 12,
           center: uluru
         });
-        var marker = new google.maps.Marker({
+        console.log();
+          var marker = new google.maps.Marker({
+
           position: uluru,
           map: map
         });
+var a;
+var markers = [];
+
+        for(a=0;a<4;a++){
+                  uluru = {lat: 59.4370+0.003, lng: 24.7536+0.003};
+console.log(uluru);
+      markers[a] = new google.maps.Marker({
+
+          position: uluru,
+          map: map
+        });
+      }
       }
     </script>
     <script async defer

@@ -9,7 +9,6 @@
     </style>
   </head>
   <script type="text/javascript" src="libs/angular/angular.js"></script>
-  <script src="js/main.js"></script>
   <body ng-controller="map">
   <p ng-repeat="place in places">{{place.lat}}</p>
     <ul ng-repeat="place in places">
@@ -28,24 +27,68 @@
           center: uluru
         });
         console.log();
-          var marker = new google.maps.Marker({
 
-          position: uluru,
-          map: map
-        });
-var a;
+var q;
 var markers = [];
 
-        for(a=0;a<4;a++){
-                  uluru = {lat: 59.4370+0.003, lng: 24.7536+0.003};
+        for(q=0;q<4;q++){
+          var d=30+q;
+          var k=10+q;
+          var w=20+q;
+          var e=k.toString();
+          var a=w.toString();
+          var b=d.toString();
+          console.log(document.getElementById(b).innerHTML);
+          if(document.getElementById(b).innerHTML=="1"){
+            console.log(document.getElementById(b).innerHTML);
+                  uluru = {lat: parseFloat(document.getElementById(e).innerHTML), lng: parseFloat(document.getElementById(a).innerHTML)};
 console.log(uluru);
-      markers[a] = new google.maps.Marker({
-
+      markers[q] = new google.maps.Marker({
           position: uluru,
           map: map
         });
+      }}
       }
-      }
+var app = angular.module('minmax', []);
+
+app.controller('map', function ($scope,ContactService) {
+  
+console.log("andro");
+$scope.places=ContactService;
+console.log($scope.places[1]);
+});
+
+
+app.service('ContactService', function () {
+
+  return {
+    "places": [
+    {
+      "lat":59.4370, 
+      "ling":24.7536,
+      "wat":1
+    },
+    {
+      "lat":59.4370, 
+      "ling":24.7536,
+      "wat":1
+    },    {
+      "lat":59.4369, 
+      "ling":24.7536,
+      "wat":1
+    },    {
+      "lat":59.4366, 
+      "ling":24.7536,
+      "wat":1
+    },    {
+      "lat":59.4367, 
+      "ling":24.7536,
+      "wat":1
+    },    
+]
+}
+});
+
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCah47EsmsSk7KX9D_7xlV03MRT6PVxatk&callback=initMap">

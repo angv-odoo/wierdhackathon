@@ -10,7 +10,7 @@
   </head>
   <script type="text/javascript" src="libs/angular/angular.js"></script>
   <body ng-controller="map">
-  <p ng-repeat="place in places">{{place.lat}}</p>
+  <p ng-repeat="place in places" visibility="hidden">{{place.lat}}</p>
     <ul ng-repeat="place in places">
   <li ng-repeat="(key, val) in place">
     {{key}}: <span id="1{{key}}" >{{val.lat}} </span><span id="2{{key}}">{{val.ling}}</span><span id="3{{key}}">{{val.wat}}</span>
@@ -31,7 +31,7 @@
 var q;
 var markers = [];
 
-        for(q=0;q<4;q++){
+        for(q=0;q<5;q++){
           var d=30+q;
           var k=10+q;
           var w=20+q;

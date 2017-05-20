@@ -177,6 +177,11 @@
 		.big {
 			font-size: 24px;
 		}
+    .button2{
+      background-color:rgba(51, 87, 134, 100);
+      margin:10px;
+      width:70%;
+    }
     </style>
   </head>
   <script type="text/javascript" src="libs/angular/angular.js"></script>
@@ -221,18 +226,21 @@
 					<button type="button" id="reportButton" onclick="onReport">Report</button>
 				</div>
 			</div>
-			
 			<div id="vote" class="tabcontent">
 				<!-- generate categoryDivs for every category -->
 				<div class="categoryDiv" onclick="categoryClick('accessibility')">&#9662 Accessibility
 				</div>
-				<!-- generate problemDivs for every problem -->
+
+    		<!-- generate problemDivs for every problem -->
 				<div class="problemDiv accessibility" onclick="problemClick('kerese')">
 					hole in kerese st road
 					<!-- each problemDiv has a contentDiv in it -->
 					<div class="contentDiv kerese">
 						i found a big hole. is sad.
 					</div>
+          <button class="button2">Vote for </button>
+          <button class="button2">Vote against </button>
+
 				</div>
 
 				<div id="accessibility" class="categoryDiv">&#9662 Accessibility

@@ -4,7 +4,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     
   </script>
+    <script type="text/javascript" src="libs/angular/angular.js"></script>
+
 <script type="text/javascript" src="js/sidebar.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
     <link rel="stylesheet" type="text/css" href="andro.css">
 
     <style>
@@ -185,7 +189,6 @@
     }
     </style>
   </head>
-  <script type="text/javascript" src="libs/angular/angular.js"></script>
    <body ng-controller="map">
    <div>
    <ul>
@@ -206,8 +209,8 @@
 			</div>
 			
 			<div id="vote" class="tabcontent">
-					<input type="text" id="locationInput" placeholder="  Location">
-					<button type="button" id="locationButton">Locate</button>
+					<input type="text" ng-model="locationInput" id="locationInput" placeholder="  Location">
+					<button type="button" id="locationButton">Locate </button>
 			
 				<div id="authenticateDiv">
 					<p id="authenticate">Authenticate</p>
@@ -215,15 +218,17 @@
 				</div>
 				<div id="topicDiv">
 					<p id="topic">Topic</p>
-					<select id="selection" onchange="simulation_picker()">
-						<option value=" "> </option>
+					<select id="selection" ng-model="topic" onchange="simulation_picker()">
+						<option value="0"> Transport</option>
+            <option value="1"> crime</option>
+
 					</select>
 				</div>
 				<div id="messageDiv">
-					<p id="message">Message</p>
-					<textarea type="text" id="messageInput">
+					<p id="message" >Message</p>
+					<textarea type="text" ng-model="information" id="messageInput">
 					</textarea>
-					<button type="button" id="reportButton" onclick="openTab(event, 'report')" >Report</button>
+					<button type="button" id="reportButton" ng-click="saved()" onclick="openTab(event, 'report')" >Report</button>
 				</div>
 			</div>
       
@@ -277,6 +282,7 @@
     <script>
      function initMap() {
         var haightAshbury = {lat: 59.4370, lng: 24.7536};
+        var markers=[]; 
 
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
@@ -287,7 +293,8 @@
         // This event listener will call addMarker() when the map is clicked.
         map.addListener('click', function(event) {
           addMarker(event.latLng);
-          $("#locationInput").value=event.latLng;
+          console.log("an");
+          $("#locationInput").val('event.latLng');
         });
 
         // Adds a marker at the center of the map.
@@ -300,15 +307,11 @@
           position: location,
           map: map
         });
-        var haightAshbury = {lat: 59.4375, lng: 24.7531};
-        var marker1 = new google.maps.Marker({
-          position: haightAshbury,
-          map: map
-        });
-        markers.push(marker);
-       markers.push(marker1);
-      }
+        $("#locationInput").val(location);
 
+        console.log(marker.position.lat);
+       markers.push(marker);
+      }
       // Sets the map on all markers in the array.
       function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
@@ -335,57 +338,6 @@
       }
          $("#sidebar").hide();
 
-var app = angular.module('minmax', []);
-
-app.controller('map', function ($scope,ContactService) {
- $scope.fo=2;
- $scope.for = function(){
- $scope.fo=$scope.fo+1;
- }
-  $scope.again=0;
- $scope.against = function(){
- $scope.again=$scope.again+1;
- }
-  $scope.mafunction = function(){
-   
-   $("#sidebar").toggle("slow");
-   console.log("lol");
-  }
-console.log("andro");
-$scope.places=ContactService;
-console.log($scope.places[1]);
-});
-
-
-app.service('ContactService', function () {
-
-  return {
-    "places": [
-    {
-      "lat":59.4370, 
-      "ling":24.7536,
-      "wat":1
-    },
-    {
-      "lat":59.4370, 
-      "ling":24.7536,
-      "wat":1
-    },    {
-      "lat":59.4369, 
-      "ling":24.7536,
-      "wat":1
-    },    {
-      "lat":59.4366, 
-      "ling":24.7536,
-      "wat":1
-    },    {
-      "lat":59.4367, 
-      "ling":24.7536,
-      "wat":1
-    },    
-]
-}
-});
 
     </script>
     <script async defer

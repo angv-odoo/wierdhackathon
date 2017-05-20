@@ -204,30 +204,25 @@
 			</div>
 			
 			<div id="report" class="tabcontent">
-				<div id="locateDiv">
-					<input type="text" id="locationInput" placeholder="  Location">
-					<button type="button" id="locationButton">Locate</button>
-				</div>
-				<div id="authenticateDiv">
-					<p id="authenticate">Authenticate</p>
-					<button type="button" id="authenticateButton">Authenticate with<br>Mobile-ID/Smart-ID</button>
-				</div>
-				<div id="topicDiv">
-					<p id="topic">Topic</p>
-					<select id="selection" onchange="simulation_picker()">
-						<option value=" "> </option>
-					</select>
-				</div>
-				<div id="messageDiv">
-					<p id="message">Message</p>
-					<textarea type="text" id="messageInput">
-					</textarea>
-					<button type="button" id="reportButton" onclick="onReport">Report</button>
-				</div>
+				
 			</div>
 
 			<div id="solution" class="tabcontent">
-<p>sadjaskd</p>
+				<div id="topicDiv">
+					<p id="topic">problem</p>
+					<select id="selection" onchange="simulation_picker()">
+						<option value="0"> big hole near viru keskus </option>
+												<option value="0"> small hole near viru keskus </option>
+
+					</select>
+				</div>
+				<div id="messageDiv">
+					<p id="message">solution</p>
+					<textarea type="text" id="messageInput">
+					</textarea>
+					 
+					<button type="button" onclick="deleteMarkers();" id="reportButton" >Publish</button>
+				</div>
 			</div>
 			
 		</div>
@@ -240,40 +235,73 @@
 </ul>
     <div id="map" ></div>
     <script>
+
+
+  
+
+      var map;
+      var markers = [];
+
       function initMap() {
-        
-        var uluru = {lat: 59.4370, lng: 24.7536};
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var haightAshbury = {lat: 59.4370, lng: 24.7536};
+
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
-          center: uluru
-
+          center: haightAshbury,
+          mapTypeId: 'terrain'
         });
-var q;
-var markers = [];
-   $("#sidebar").hide();
 
-        for(q=0;q<4;q++){
-          console.log("b");
+        // This event listener will call addMarker() when the map is clicked.
+        map.addListener('click', function(event) {
+          addMarker(event.latLng);
+        });
 
-          var d='a'+q;
-          var k='b'+q;
-          var w='c'+q;
-          var e=k.toString();
-          var a=w.toString();
-          var b=d.toString();
-          console.log(b);
-          console.log($('#'+b).innerHTML);
-      
-          
-                 /* uluru = {lat: parseFloat(document.getElementById(e).text), lng: parseFloat(document.getElementById(a).text)};*/
-      markers[q] = new google.maps.Marker({
-          position: uluru,
+        // Adds a marker at the center of the map.
+        addMarker(haightAshbury);
+      }
+
+      // Adds a marker to the map and push to the array.
+      function addMarker(location) {
+        var marker = new google.maps.Marker({
+          position: location,
           map: map
         });
-      markers[q]
-      console.log("lol");
-  
-      }}
+        var haightAshbury = {lat: 59.4375, lng: 24.7531};
+        var marker1 = new google.maps.Marker({
+          position: haightAshbury,
+          map: map
+        });
+        markers.push(marker);
+       markers.push(marker1);
+      }
+
+      // Sets the map on all markers in the array.
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+
+      // Shows any markers currently in the array.
+      function showMarkers() {
+        setMapOnAll(map);
+      }
+
+      // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        clearMarkers();
+        markers[1] = [];
+                 setMapOnAll(map);
+
+      }
+   $("#sidebar").hide();
+        
+      
 var app = angular.module('minmax', []);
 
 app.controller('map', function ($scope,ContactService) {

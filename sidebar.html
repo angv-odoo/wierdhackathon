@@ -2,6 +2,9 @@
 <html>
 	<head>
 		<style>
+			body {
+				margin: 0px;
+			}
 			@font-face {
 				font-family: Montserrat;
 				src: url(Montserrat-Regular.ttf);
@@ -11,12 +14,11 @@
 				src: url(Roboto-Regular.ttf);
 			}
 			#sidebar{
-				height: 600px;
-				width: 50%;
+				height: 700px;
+				width: 25%;
 				float: left;
 				background-color: rgba(51, 87, 134, 100);
 				color: white;
-				//text-align: center;
 			}
 			input, textarea{
 				display: block;
@@ -35,29 +37,30 @@
 				background-color: #FB3640;
 				color: white;
 				font-family: Roboto;
-				font-size: 16px;
+				font-size: 14px;
 			}
 			#report {
 				width: 70%;
 				margin: auto;
 				font-family: Roboto;
+				display: block;
 			}
 			#locateDiv, #authenticateDiv, #messageDiv {
 				margin: auto;
 			}
 			#locateDiv, #authenticateDiv{
 				width: 90%;
-			}
-			#authenticateDiv{
-				margin-top: 25px;
+				margin-top: 35px;
 			}
 			#messageDiv{
 				margin-top: 45px;
 			}
 			#placename {
-				font-size: 28px;
+				font-size: 32px;
 				font-family: Montserrat;
 				text-align: center;
+				margin-bottom: 18px;
+				margin-top: 20px;
 			}
 			#authenticate, #message{
 				font-size: 10px;
@@ -69,21 +72,69 @@
 				width: 90%;
 			}
 			#locationButton, #reportButton{
-				height: 30px;
+				height: 35px;
 			}
 			#messageInput{
-				height: 150px;
+				height: 180px;
 			}
 			#authenticateButton {
 				background-color: #247BA0;
 				height: 50px;
 			}
+			/* Style the tab */
+			div.tab {
+				overflow: hidden;
+				//border: 1px solid #ccc;
+				background-color: #f1f1f1;
+			}
+
+			/* Style the buttons inside the tab */
+			div.tab button {
+				background-color: #4974AD;
+				float: left;
+				border: none;
+				border-bottom: 4px solid #4974AD;
+				outline: none;
+				cursor: pointer;
+				padding: 7px 0px;
+				transition: 0.3s;
+				width: 50%;
+				border-radius: 0px;
+				font-size: 16px;
+			}
+
+			/* Change background color of buttons on hover */
+			div.tab button:hover {
+				//background-color: rgba(51, 87, 134, 100);
+			}
+
+			/* Create an active/current tablink class */
+			div.tab button.active {
+				background-color: rgba(51, 87, 134, 100);
+			}
+
+			/* Style the tab content */
+			.tabcontent {
+				display: none;
+				//padding: 6px 12px;
+				//border: 1px solid #ccc;
+				//border-top: none;
+			} 
 		</style>
+		
+		<script type="text/javascript" src="js/sidebar.js"></script>
 	</head>
 	<body>
+	
 		<div id="sidebar">
 			<p id="placename">NARVA</p>
-			<div id="report">
+			
+			<div class="tab">
+				<button class="tablinks active" onclick="openTab(event, 'report')" >REPORT</button>
+				<button class="tablinks" onclick="openTab(event, 'vote')">VOTE</button>
+			</div>
+			
+			<div id="report" class="tabcontent">
 				<div id="locateDiv">
 					<input type="text" id="locationInput" placeholder="  Location">
 					<button type="button" id="locationButton">Locate</button>
@@ -96,11 +147,13 @@
 					<p id="message">MESSAGE</p>
 					<textarea type="text" id="messageInput">
 					</textarea>
-					<button type="button" id="reportButton">Report</button>
+					<button type="button" id="reportButton" onclick="onReport">Report</button>
 				</div>
 			</div>
-			<div id="vote">
+			
+			<div id="vote" class="tabcontent">
 			</div>
+			
 		</div>
 	</body>
 </html>

@@ -223,55 +223,47 @@
 			<div class="tab">
 				<button class="tablinks" onclick="openTab(event, 'report')" >REPORT</button>
 				<button class="tablinks active" onclick="openTab(event, 'vote')">VOTE</button>
-				<button class="tablinks" onclick="openTab(event, 'solution')">SOLUTION</button>
+				<button class="tablinks" onclick="openTab(event, 'solution')">SOLVED</button>
 			</div>
 			
-<<<<<<< HEAD
-			<div id="vote" class="tabcontent">
-					<input type="text" ng-model="locationInput" id="locationInput" placeholder="  Location">
-					<button type="button" id="locationButton">Locate </button>
-			
-=======
 			<div id="report" class="tabcontent">
 				<div id="locateDiv">
 					<input type="text" id="locationInput" placeholder="  Location">
 					<button type="button" id="locationButton">Locate</button>
 				</div>
->>>>>>> 0d944d8afbf63d63d7300045c1f9cbb7455b654c
 				<div id="authenticateDiv">
 					<p id="authenticate">Authenticate</p>
 					<button type="button" id="authenticateButton">Authenticate with<br>Mobile-ID/Smart-ID</button>
 				</div>
 				<div id="topicDiv">
 					<p id="topic">Topic</p>
-					<select id="selection" ng-model="topic" onchange="simulation_picker()">
-						<option value="0"> Transport</option>
-            <option value="1"> crime</option>
-
+					<select id="selection" onchange="simulation_picker()">
+						<option value=" "> </option>
+						<option value="roads">Roads</option>
+						<option value="accessibility">Accessibility</option>
+						<option value="buildings">Buildings</option>
 					</select>
 				</div>
 				<div id="messageDiv">
-					<p id="message" >Message</p>
-					<textarea type="text" ng-model="information" id="messageInput">
+					<p id="message">Message</p>
+					<textarea type="text" id="messageInput">
 					</textarea>
-<<<<<<< HEAD
-					<button type="button" id="reportButton" ng-click="saved()" onclick="openTab(event, 'report')" >Report</button>
-=======
 					<button type="button" id="reportButton" onclick="onReport">Report</button>
->>>>>>> 0d944d8afbf63d63d7300045c1f9cbb7455b654c
 				</div>
 			</div>
+			
 			<div id="vote" class="tabcontent">
 				<!-- generate categoryDivs for every category -->
-				<div class="categoryDiv" onclick="categoryClick('accessibility')">
-					&#9662 Accessibility
+				<div class="categoryDiv" onclick="categoryClick('roads')">
+					&#9662 Roads
 				</div>
+				
 				<!-- generate problemDivs for every problem -->
-				<div class="problemDiv accessibility">
+				<div class="problemDiv roads">
 					<p onclick="problemClick('kerese')">Pothole at Kerese st. 31 ({{fo}}/{{again}})</p>
 					<!-- each problemDiv has a contentDiv in it -->
 					<div class="contentDiv kerese">
-						i found a big hole. is sad. Life is nothing but a meaningless struggle of self conscious animal, with the enless void awaiting at the end. And no matter how hard you try, you will end up just as other 150 billion people. 
+						 Big pot hole in the ground, must be becaus of the recent rains. I saw a car dent their bumper against it. Please fix it!
 					</div>
 					<button class="button2 voteButton kerese" ng-click="for()">
 						Vote for
@@ -280,26 +272,58 @@
 						Vote against
 					</button>
 				</div>
-
-				<div id="accessibility" class="categoryDiv">&#9662 Accessibility 0 for, 2 against
-					<div id="kerese" class="problemDiv">
-						
+				
+				<div class="problemDiv roads">
+					<p onclick="problemClick('estonia')">
+					Worn down street markings - Estonia pst. 2 ({{fo}}/{{again}})
+					</p>
+					<div class="contentDiv estonia">
+						 Some street markings that are difficult to see can cause dangerous confusion.
 					</div>
+					<button class="button2 voteButton estonia" ng-click="for()">
+						Vote for
+					</button>
+					<button class="button2 voteButton estonia" ng-click="against()">
+						Vote against
+					</button>
+				</div>
+
+				<div class="categoryDiv" onclick="categoryClick('accessibility')">
+					&#9662 Accessibility
+				</div>
+				
+				<div class="categoryDiv" onclick="categoryClick('buildings')">
+					&#9662 Buildings
 				</div>
 			</div>
 			
 			<div id="solution" class="tabcontent">
-<div class="categoryDiv" onclick="categoryClick('accessibility')">&#9662 small hole near viru
-        </div>
+				<!-- generate categoryDivs for every category -->
+				<div class="categoryDiv" onclick="categoryClick('roads')">
+					&#9662 Roads
+				</div>
+				
+				<!-- generate problemDivs for every problem -->
+				<div class="problemDiv roads">
+					<p onclick="problemClick('stop')">Broken stop sign</p>
+					<!-- each problemDiv has a contentDiv in it -->
+					<div class="contentDiv stop">
+					</div>
+					<button class="button2 voteButton stop" ng-click="for()">
+						Vote for
+					</button>
+					<button class="button2 voteButton stop" ng-click="against()">
+						Vote against
+					</button>
+				</div>
 
-        <!-- generate problemDivs for every problem -->
-        <div class="problemDiv accessibility" >
-          The solution for the small hole
- 
-
-        </div>
-
-
+				<div class="categoryDiv" onclick="categoryClick('accessibility')">
+					&#9662 Accessibility
+				</div>
+				
+				<div class="categoryDiv" onclick="categoryClick('buildings')">
+					&#9662 Buildings
+				</div>
 			</div>
 			
 		</div>

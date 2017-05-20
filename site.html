@@ -228,7 +228,7 @@
 			</div>
 			<div id="vote" class="tabcontent">
 				<!-- generate categoryDivs for every category -->
-				<div class="categoryDiv" onclick="categoryClick('accessibility')">&#9662 Accessibility
+				<div class="categoryDiv" onclick="categoryClick('accessibility')">&#9662 Accessibility {{fo}} for, {{again}} against
 				</div>
 
     		<!-- generate problemDivs for every problem -->
@@ -236,14 +236,14 @@
 					hole in kerese st road
 					<!-- each problemDiv has a contentDiv in it -->
 					<div class="contentDiv kerese">
-						i found a big hole. is sad.
+						i found a big hole. is sad. Life is nothing but a meaningless struggle of self conscious animal, with the enless void awaiting at the end. And no matter how hard you try, you will end up just as other 150 billion people. 
 					</div>
-          <button class="button2">Vote for </button>
-          <button class="button2">Vote against </button>
+          <button class="button2" ng-click="for()">Vote for </button><span class="contentDiv kerese"> </span>
+          <button class="button2" ng-click="against()">Vote against </button><span class="contentDiv kerese"></span>
 
 				</div>
 
-				<div id="accessibility" class="categoryDiv">&#9662 Accessibility
+				<div id="accessibility" class="categoryDiv">&#9662 Accessibility 0 for, 2 against
 					<div id="kerese" class="problemDiv">
 						
 					</div>
@@ -301,7 +301,14 @@ var markers = [];
 var app = angular.module('minmax', []);
 
 app.controller('map', function ($scope,ContactService) {
- 
+ $scope.fo=2;
+ $scope.for = function(){
+ $scope.fo=$scope.fo+1;
+ }
+  $scope.again=0;
+ $scope.against = function(){
+ $scope.again=$scope.again+1;
+ }
   $scope.mafunction = function(){
    
    $("#sidebar").toggle("slow");

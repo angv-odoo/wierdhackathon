@@ -18,6 +18,7 @@
        }
        body{
         background-color: rgba(51, 87, 134, 100);
+		font-family: Roboto;
        }
        .hohoho{
        position: absolute;
@@ -200,15 +201,37 @@
 <div class="containing">
 <button ng-click="mafunction()" id="button3">>>></button>
     <div id="sidebar">
-			<p id="placename">NARVA</p>
+			<p id="placename">TALLINN</p>
 			
 			<div class="tab">
 				<button class="tablinks" onclick="openTab(event, 'report')" >REPORT</button>
-				<button class="tablinks" onclick="openTab(event, 'solution')">SOLUTION</button>
+				<button class="tablinks active" onclick="openTab(event, 'solution')">SOLUTION</button>
 			</div>
 			
 			<div id="report" class="tabcontent">
-				
+				<div id="locateDiv">
+					<input type="text" id="locationInput" placeholder="  Location">
+					<button type="button" id="locationButton">Locate</button>
+				</div>
+				<!--<div id="authenticateDiv">
+					<p id="authenticate">Authenticate</p>
+					<button type="button" id="authenticateButton">Authenticate with<br>Mobile-ID/Smart-ID</button>
+				</div>-->
+				<div id="topicDiv">
+					<p id="topic">Topic</p>
+					<select id="selection" onchange="simulation_picker()">
+						<option value=" "> </option>
+						<option value="roads">Roads</option>
+						<option value="accessibility">Accessibility</option>
+						<option value="buildings">Buildings</option>
+					</select>
+				</div>
+				<div id="messageDiv">
+					<p id="message">Message</p>
+					<textarea type="text" id="messageInput">
+					</textarea>
+					<button type="button" id="reportButton" onclick="onReport">Report</button>
+				</div>
 			</div>
 
 			<div id="solution" class="tabcontent">
@@ -216,8 +239,7 @@
 					<p id="topic">problem</p>
 					<select id="selection" onchange="simulation_picker()">
 						<option value="0"> big hole near viru keskus </option>
-												<option value="0"> small hole near viru keskus </option>
-
+						<option value="0"> small hole near viru keskus </option>
 					</select>
 				</div>
 				<div id="messageDiv">

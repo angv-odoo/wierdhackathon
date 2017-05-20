@@ -23,3 +23,19 @@ function onReport() {
 	
 	//open popup with thank you
 }
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function categoryClick(id) {
+	var elmnts =  document.getElementsByClassName(id);
+	for (var i = 0; i < elmnts.length; i++) {
+		elmnts[i].classList.toggle("show");
+	}
+}
+function problemClick(id) {
+	var elmnts =  document.getElementsByClassName(id);
+	for (var i = 0; i < elmnts.length; i++) {
+		elmnts[i].classList.toggle("show");
+		elmnts[i].parentNode.classList.toggle("big");
+	}
+}

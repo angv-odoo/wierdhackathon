@@ -201,6 +201,7 @@
 			</div>
 			
 			<div id="solution" class="tabcontent">
+
 			</div>
 			
 		</div>
@@ -208,40 +209,43 @@
   <p class="hohoho" ng-repeat="place in places" visibility="hidden">{{place.lat}}</p>
     <ul class="hohoho" ng-repeat="place in places">
   <li ng-repeat="(key, val) in place">
-    {{key}}: <span id="1{{key}}" >{{val.lat}} </span><span id="2{{key}}">{{val.ling}}</span><span id="3{{key}}">{{val.wat}}</span>
+    {{key}}: <span id="a{{key}}" >{{val.lat}} </span><span id="b{{key}}">{{val.ling}}</span><span id="c{{key}}">{{val.wat}}</span>
   </li>
 </ul>
     <div id="map" ></div>
     <script>
-    $("#sidebar").hide();
       function initMap() {
+        
         var uluru = {lat: 59.4370, lng: 24.7536};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: uluru
-        });
-        console.log();
 
+        });
 var q;
 var markers = [];
 
         for(q=0;q<4;q++){
-          var d=30+q;
-          var k=10+q;
-          var w=20+q;
+          console.log("b");
+
+          var d='a'+q;
+          var k='b'+q;
+          var w='c'+q;
           var e=k.toString();
           var a=w.toString();
           var b=d.toString();
-          console.log($("#"+b).text);
-        /*  if(document.getElementById(b).innerHTML=="1"){
-            console.log(document.getElementById(b).innerHTML);
-                  uluru = {lat: parseFloat(document.getElementById(e).innerHTML), lng: parseFloat(document.getElementById(a).innerHTML)};
-console.log(uluru);
+          console.log(b);
+          console.log($('#'+b).innerHTML);
+      
+          
+                 /* uluru = {lat: parseFloat(document.getElementById(e).text), lng: parseFloat(document.getElementById(a).text)};*/
       markers[q] = new google.maps.Marker({
           position: uluru,
           map: map
         });
-      }*/
+      markers[q]
+      console.log("lol");
+  
       }}
 var app = angular.module('minmax', []);
 

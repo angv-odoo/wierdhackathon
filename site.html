@@ -5,6 +5,8 @@
     
   </script>
 <script type="text/javascript" src="js/sidebar.js"></script>
+    <link rel="stylesheet" type="text/css" href="andro.css">
+
     <style>
        #map {
         height: 700px;
@@ -179,6 +181,14 @@
   </head>
   <script type="text/javascript" src="libs/angular/angular.js"></script>
    <body ng-controller="map">
+   <div>
+   <ul>
+   <span class="hehehe">TRAAAAKI</span>
+  <li><a href="default.asp">User</a></li>
+  <li><a href="news.asp">government</a></li>
+</ul>
+</div>
+<div class="containing">
 <button ng-click="mafunction()" id="button3">>>></button>
     <div id="sidebar">
 			<p id="placename">NARVA</p>
@@ -256,6 +266,7 @@
         });
 var q;
 var markers = [];
+   $("#sidebar").hide();
 
         for(q=0;q<4;q++){
           console.log("b");
@@ -328,5 +339,6 @@ app.service('ContactService', function () {
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCah47EsmsSk7KX9D_7xlV03MRT6PVxatk&callback=initMap">
     </script>
+    </div>
   </body>
 </html>

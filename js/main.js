@@ -1,17 +1,22 @@
-
 var app = angular.module('minmax', []);
-
 app.controller('map', function ($scope,ContactService) {
   $scope.problemplaces=[{
-      location:'59.4370,24.7536',
-      topic: 1,
-      locationInput:'wtfdude'
-    },];
-  
-	$scope.information="message";
-  $scope.problems= {}
-	$scope.saved = function(){
-    $scope.problemplaces = $scope.problemplaces.concat([{
+      locationInput:'59.4370,24.7536',
+      topic: 'crime',
+      location:'wtfdude',
+      forr: 0,
+      againstt:0
+    },
+    {location: "messagejkafshdjdasnlkfhsajdzf",
+    topic : "transport",
+locationInput : "(59.442282456336535,  24.727547764778137)",
+      forr: 3,
+      againstt:0
+}];
+$scope.information="message";
+$scope.problems= {}
+$scope.saved = function(){
+$scope.problemplaces = $scope.problemplaces.concat([{
  location: $scope.information, topic: $scope.topic,locationInput: $scope.locationInput
     }])
     console.log($scope.problemplaces);

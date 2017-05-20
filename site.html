@@ -26,7 +26,6 @@
     
       body {
 			margin: 0px;
-			font-family: Roboto;
 		}
 		@font-face {
 			font-family: Montserrat;
@@ -143,13 +142,12 @@
 		}
 		.tabcontent {
 			display: none;
-			border-bottom: 2px solid rgba(51, 87, 134, 100);
 		} 
 		#selection {
 			height: 30px;
 		}
 		.categoryDiv {
-		width:100%;
+      width:100%;
 			font-size: 16px;
 			padding: 5px 10px;
 		}
@@ -178,33 +176,17 @@
 		.categoryDiv:hover, .problemDiv:hover {
 			background-color: #4974AD;
 		}
-		.big {
-			font-size: 24px;
-		}
-		.button2{
-		  
-		}
-		.voteButton {
-			display: none;
-		}
-		.kerese {
-			display: none;
-		}
 		.show {
 			display: block;
 		}
-		.voteButton {
-			margin:10px;
-			background-color:rgba(51, 87, 134, 100);
-			width: 40%
-			clear: left;
+		.big {
+			font-size: 24px;
 		}
-		problemDiv button {
-			margin:10px;
-			background-color:rgba(51, 87, 134, 100);
-			width: 30%;
-			clear: left;
-		}
+    .button2{
+      background-color:rgba(51, 87, 134, 100);
+      margin:10px;
+      width:70%;
+    }
     </style>
   </head>
    <body ng-controller="map">
@@ -221,23 +203,15 @@
 			<p id="placename">NARVA</p>
 			
 			<div class="tab">
-				<button class="tablinks" onclick="openTab(event, 'report')" >REPORT</button>
-				<button class="tablinks active" onclick="openTab(event, 'vote')">VOTE</button>
+				<button class="tablinks active" onclick="openTab(event, 'vote')" >REPORT</button>
+				<button class="tablinks " onclick="openTab(event, 'report')">VOTE</button>
 				<button class="tablinks" onclick="openTab(event, 'solution')">SOLUTION</button>
 			</div>
 			
-<<<<<<< HEAD
 			<div id="vote" class="tabcontent">
 					<input type="text" ng-model="locationInput" id="locationInput" placeholder="  Location">
 					<button type="button" id="locationButton">Locate </button>
 			
-=======
-			<div id="report" class="tabcontent">
-				<div id="locateDiv">
-					<input type="text" id="locationInput" placeholder="  Location">
-					<button type="button" id="locationButton">Locate</button>
-				</div>
->>>>>>> 0d944d8afbf63d63d7300045c1f9cbb7455b654c
 				<div id="authenticateDiv">
 					<p id="authenticate">Authenticate</p>
 					<button type="button" id="authenticateButton">Authenticate with<br>Mobile-ID/Smart-ID</button>
@@ -254,31 +228,26 @@
 					<p id="message" >Message</p>
 					<textarea type="text" ng-model="information" id="messageInput">
 					</textarea>
-<<<<<<< HEAD
 					<button type="button" id="reportButton" ng-click="saved()" onclick="openTab(event, 'report')" >Report</button>
-=======
-					<button type="button" id="reportButton" onclick="onReport">Report</button>
->>>>>>> 0d944d8afbf63d63d7300045c1f9cbb7455b654c
 				</div>
 			</div>
-			<div id="vote" class="tabcontent">
+      
+			<div id="report" class="tabcontent">
 				<!-- generate categoryDivs for every category -->
-				<div class="categoryDiv" onclick="categoryClick('accessibility')">
-					&#9662 Accessibility
+        
+				<div class="categoryDiv" onclick="categoryClick('accessibility')">&#9662 Accessibility {{fo}} for, {{again}} against
 				</div>
-				<!-- generate problemDivs for every problem -->
-				<div class="problemDiv accessibility">
-					<p onclick="problemClick('kerese')">Pothole at Kerese st. 31 ({{fo}}/{{again}})</p>
+
+    		<!-- generate problemDivs for every problem -->
+				<div class="problemDiv accessibility" >
+					hole in kerese st road
 					<!-- each problemDiv has a contentDiv in it -->
 					<div class="contentDiv kerese">
-						i found a big hole. is sad. Life is nothing but a meaningless struggle of self conscious animal, with the enless void awaiting at the end. And no matter how hard you try, you will end up just as other 150 billion people. 
+						{{information}}
 					</div>
-					<button class="button2 voteButton kerese" ng-click="for()">
-						Vote for
-					</button>
-					<button class="button2 voteButton kerese" ng-click="against()">
-						Vote against
-					</button>
+          <button class="button2" ng-click="for()">Vote for </button><span class="contentDiv kerese"> </span>
+          <button class="button2" ng-click="against()">Vote against </button><span class="contentDiv kerese"></span>
+
 				</div>
 
 				<div id="accessibility" class="categoryDiv">&#9662 Accessibility 0 for, 2 against

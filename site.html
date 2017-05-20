@@ -1,23 +1,179 @@
 <!DOCTYPE html>
 <html ng-app="minmax">
   <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    
+  </script>
+<script type="text/javascript" src="js/sidebar.js"></script>
     <style>
        #map {
         height: 700px;
         width: 75%;
        }
        .hohoho{
-        position: absolute;
-        visibility: hidden;
+       position: absolute;
+       margin-top:-400px;
        }
+    
+      body {
+        margin: 0px;
+      }
+      @font-face {
+        font-family: Montserrat;
+        src: url(Montserrat-Regular.ttf);
+      }
+      @font-face {
+        font-family: Roboto;
+        src: url(Roboto-Regular.ttf);
+      }
+      #sidebar{
+
+        height: 700px;
+        width: 25%;
+        float: left;
+        background-color: rgba(51, 87, 134, 100);
+        color: white;
+      }
+      input, textarea{
+        display: block;
+        margin: auto;
+        width: 100%;
+        border-radius: 7px;
+        border: none;
+        margin-bottom: 20px;
+      }
+      button {
+        display: block;
+        margin: auto;
+        width: 100%;
+        border-radius: 7px;
+        border: none;
+        background-color: #FB3640;
+        color: white;
+        font-family: Roboto;
+        font-size: 14px;
+      }
+      #report {
+        width: 70%;
+        margin: auto;
+        font-family: Roboto;
+        display: block;
+      }
+      #locateDiv, #authenticateDiv, #messageDiv {
+        margin: auto;
+      }
+      #locateDiv, #authenticateDiv{
+        width: 90%;
+        margin-top: 35px;
+      }
+      #messageDiv{
+        margin-top: 45px;
+      }
+      #placename {
+        font-size: 32px;
+        font-family: Montserrat;
+        text-align: center;
+        margin-bottom: 18px;
+        margin-top: 20px;
+      }
+      #authenticate, #message{
+        font-size: 10px;
+      }
+      #locationInput{
+        height: 28px;
+      }
+      #locationButton{
+        width: 90%;
+      }
+      #locationButton, #reportButton{
+        height: 35px;
+      }
+      #messageInput{
+        height: 180px;
+      }
+      #authenticateButton {
+        background-color: #247BA0;
+        height: 50px;
+      }
+      /* Style the tab */
+      div.tab {
+        overflow: hidden;
+        //border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+
+      /* Style the buttons inside the tab */
+      div.tab button {
+        background-color: #4974AD;
+        float: left;
+        border: none;
+        border-bottom: 4px solid #4974AD;
+        outline: none;
+        cursor: pointer;
+        padding: 7px 0px;
+        transition: 0.3s;
+        width: 50%;
+        border-radius: 0px;
+        font-size: 16px;
+      }
+
+      /* Change background color of buttons on hover */
+      div.tab button:hover {
+        //background-color: rgba(51, 87, 134, 100);
+      }
+
+      /* Create an active/current tablink class */
+      div.tab button.active {
+        background-color: rgba(51, 87, 134, 100);
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        //padding: 6px 12px;
+        //border: 1px solid #ccc;
+        //border-top: none;
+      } 
+      #button1{
+        float:right;
+        margin-top:30px;
+        width:5%;
+      }
     </style>
   </head>
   <script type="text/javascript" src="libs/angular/angular.js"></script>
-  <div id="header">
-		<input type="radio" value="mortal" checked> Mortal
-		<input type="radio" value="government"> Government
-	</div>
-  <body ng-controller="map">
+   <body ng-controller="map">
+<button ng-click="mafunction()" id="button1">haha</button>
+    <div id="sidebar">
+      <p id="placename">NARVA</p>
+      
+      <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'report')" >REPORT</button>
+        <button class="tablinks" onclick="openTab(event, 'vote')">VOTE</button>
+      </div>
+      
+      <div id="report" class="tabcontent">
+        <div id="locateDiv">
+          <input type="text" id="locationInput" placeholder="  Location">
+          <button type="button" id="locationButton">Locate</button>
+        </div>
+        <div id="authenticateDiv">
+          <p id="authenticate">Authenticate</p>
+          <button type="button" id="authenticateButton">Authenticate with ID card</button>
+        </div>
+        <div id="messageDiv">
+          <p id="message">MESSAGE</p>
+          <textarea type="text" id="messageInput">
+          </textarea>
+          <button type="button" id="reportButton" onclick="onReport">Report</button>
+        </div>
+      </div>
+      
+      <div id="vote" class="tabcontent">
+      </div>
+      
+    </div>
+ 
   <p class="hohoho" ng-repeat="place in places" visibility="hidden">{{place.lat}}</p>
     <ul class="hohoho" ng-repeat="place in places">
   <li ng-repeat="(key, val) in place">
@@ -26,6 +182,7 @@
 </ul>
     <div id="map" ></div>
     <script>
+    $("#sidebar").hide();
       function initMap() {
         var uluru = {lat: 59.4370, lng: 24.7536};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -37,15 +194,15 @@
 var q;
 var markers = [];
 
-        for(q=0;q<5;q++){
+        for(q=0;q<4;q++){
           var d=30+q;
           var k=10+q;
           var w=20+q;
           var e=k.toString();
           var a=w.toString();
           var b=d.toString();
-          console.log(document.getElementById(b).innerHTML);
-          if(document.getElementById(b).innerHTML=="1"){
+          console.log($("#"+b).text);
+        /*  if(document.getElementById(b).innerHTML=="1"){
             console.log(document.getElementById(b).innerHTML);
                   uluru = {lat: parseFloat(document.getElementById(e).innerHTML), lng: parseFloat(document.getElementById(a).innerHTML)};
 console.log(uluru);
@@ -53,12 +210,17 @@ console.log(uluru);
           position: uluru,
           map: map
         });
+      }*/
       }}
-      }
 var app = angular.module('minmax', []);
 
 app.controller('map', function ($scope,ContactService) {
-  
+ 
+  $scope.mafunction = function(){
+   
+   $("#sidebar").toggle("slow");
+   console.log("lol");
+  }
 console.log("andro");
 $scope.places=ContactService;
 console.log($scope.places[1]);

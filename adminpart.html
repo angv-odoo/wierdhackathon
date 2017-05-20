@@ -104,7 +104,7 @@
 			width: 90%;
 		}
 		#locationButton, #reportButton{
-			height: 35px;
+			height: 50px;
 		}
 		#messageInput{
 			height: 180px;
@@ -126,7 +126,7 @@
 			cursor: pointer;
 			padding: 7px 0px;
 			transition: 0.3s;
-			width: 33.3%;
+			width: 50%;
 			border-radius: 0px;
 			font-size: 16px;
 		}
@@ -200,7 +200,6 @@
 			
 			<div class="tab">
 				<button class="tablinks" onclick="openTab(event, 'report')" >REPORT</button>
-				<button class="tablinks active" onclick="openTab(event, 'vote')">VOTE</button>
 				<button class="tablinks" onclick="openTab(event, 'solution')">SOLUTION</button>
 			</div>
 			
@@ -226,32 +225,9 @@
 					<button type="button" id="reportButton" onclick="onReport">Report</button>
 				</div>
 			</div>
-			<div id="vote" class="tabcontent">
-				<!-- generate categoryDivs for every category -->
-				<div class="categoryDiv" onclick="categoryClick('accessibility')">&#9662 Accessibility {{fo}} for, {{again}} against
-				</div>
 
-    		<!-- generate problemDivs for every problem -->
-				<div class="problemDiv accessibility" >
-					hole in kerese st road
-					<!-- each problemDiv has a contentDiv in it -->
-					<div class="contentDiv kerese">
-						i found a big hole. is sad. Life is nothing but a meaningless struggle of self conscious animal, with the enless void awaiting at the end. And no matter how hard you try, you will end up just as other 150 billion people. 
-					</div>
-          <button class="button2" ng-click="for()">Vote for </button><span class="contentDiv kerese"> </span>
-          <button class="button2" ng-click="against()">Vote against </button><span class="contentDiv kerese"></span>
-
-				</div>
-
-				<div id="accessibility" class="categoryDiv">&#9662 Accessibility 0 for, 2 against
-					<div id="kerese" class="problemDiv">
-						
-					</div>
-				</div>
-			</div>
-			
 			<div id="solution" class="tabcontent">
-
+<p>sadjaskd</p>
 			</div>
 			
 		</div>

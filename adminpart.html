@@ -13,7 +13,7 @@
 
     <style>
        #map {
-        height: 670px;
+        height: 600px;
         width: 72%;
        }
        body{
@@ -37,7 +37,7 @@
 			src: url(Roboto-Regular.ttf);
 		}
 		#sidebar{
-			height: 650px;
+			height: 620px;
 			width: 25%;
 			float: left;
 			background-color: rgba(51, 87, 134, 100);
@@ -161,7 +161,7 @@
 			font-size: 16px;
 		}
       #button3{
-        height: 700px;
+        height: 620px;
 			float: left;
 			background-color: rgba(51, 87, 134, 100);
 			color: white;
@@ -326,7 +326,7 @@
 
       var map;
       var markers = [];
-
+var iconBase = 'img/';
       function initMap() {
         var haightAshbury = {lat: 59.4370, lng: 24.7536};
 
@@ -349,12 +349,14 @@
       function addMarker(location) {
         var marker = new google.maps.Marker({
           position: location,
-          map: map
+          map: map,
+          icon: iconBase+'high.png'
         });
         var haightAshbury = {lat: 59.43294288278313, lng: 24.74586322903633};
         var marker1 = new google.maps.Marker({
           position: haightAshbury,
-          map: map
+          map: map,
+          icon: iconBase+'lpin.png'
         });
         markers.push(marker);
        markers.push(marker1);

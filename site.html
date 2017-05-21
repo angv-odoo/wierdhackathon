@@ -18,7 +18,6 @@
        }
        body{
         background-color: rgba(51, 87, 134, 100);
-		font-family: Roboto;
        }
        .hohoho{
        position: absolute;
@@ -27,6 +26,7 @@
     
       body {
 			margin: 0px;
+			font-family: Roboto;
 		}
 		@font-face {
 			font-family: Montserrat;
@@ -109,7 +109,7 @@
 			width: 90%;
 		}
 		#locationButton, #reportButton{
-			height: 50px;
+			height: 35px;
 		}
 		#messageInput{
 			height: 180px;
@@ -131,7 +131,7 @@
 			cursor: pointer;
 			padding: 7px 0px;
 			transition: 0.3s;
-			width: 50%;
+			width: 33.3%;
 			border-radius: 0px;
 			font-size: 16px;
 		}
@@ -143,11 +143,13 @@
 		}
 		.tabcontent {
 			display: none;
+			border-bottom: 2px solid rgba(51, 87, 134, 100);
 		} 
 		#selection {
 			height: 30px;
 		}
 		.categoryDiv {
+		width:100%;
 			font-size: 16px;
 			padding: 5px 10px;
 		}
@@ -176,20 +178,35 @@
 		.categoryDiv:hover, .problemDiv:hover {
 			background-color: #4974AD;
 		}
-		.show {
-			display: block;
-		}
 		.big {
 			font-size: 24px;
 		}
-    .button2{
-      background-color:rgba(51, 87, 134, 100);
-      margin:10px;
-      width:70%;
-    }
+		.button2{
+		  
+		}
+		.voteButton {
+			display: none;
+		}
+		.kerese {
+			display: none;
+		}
+		.show {
+			display: block;
+		}
+		.voteButton {
+			margin:10px;
+			background-color:rgba(51, 87, 134, 100);
+			width: 40%
+			clear: left;
+		}
+		problemDiv button {
+			margin:10px;
+			background-color:rgba(51, 87, 134, 100);
+			width: 30%;
+			clear: left;
+		}
     </style>
   </head>
-  <script type="text/javascript" src="libs/angular/angular.js"></script>
    <body ng-controller="map">
    <div>
    <ul>
@@ -205,10 +222,38 @@
 			
 			<div class="tab">
 				<button class="tablinks" onclick="openTab(event, 'report')" >REPORT</button>
-				<button class="tablinks active" onclick="openTab(event, 'solution')">SOLUTION</button>
+				<button class="tablinks active" onclick="openTab(event, 'vote')">VOTE</button>
+				<button class="tablinks" onclick="openTab(event, 'solution')">SOLVED</button>
 			</div>
 			
 			<div id="report" class="tabcontent">
+				<div id="locateDiv">
+					<input type="text" id="locationInput" placeholder="  Location">
+					<button type="button" id="locationButton">Locate</button>
+				</div>
+				<div id="authenticateDiv">
+					<p id="authenticate">Authenticate</p>
+					<button type="button" id="authenticateButton">Authenticate with<br>Mobile-ID/Smart-ID</button>
+				</div>
+				<div id="topicDiv">
+					<p id="topic">Topic</p>
+					<select id="selection" onchange="simulation_picker()">
+						<option value=" "> </option>
+						<option value="roads">Roads</option>
+						<option value="accessibility">Accessibility</option>
+						<option value="buildings">Buildings</option>
+					</select>
+				</div>
+				<div id="messageDiv">
+					<p id="message">Message</p>
+					<textarea type="text" id="messageInput">
+					</textarea>
+					<button type="button" id="reportButton" onclick="onReport">Report</button>
+				</div>
+			</div>
+			
+			<div id="vote" class="tabcontent">
+				<!-- generate categoryDivs for every category -->
 				<div class="categoryDiv" onclick="categoryClick('roads')">
 					&#9662 Roads
 				</div>
@@ -220,7 +265,12 @@
 					<div class="contentDiv kerese">
 						 Big pot hole in the ground, must be becaus of the recent rains. I saw a car dent their bumper against it. Please fix it!
 					</div>
-					
+					<button class="button2 voteButton kerese" ng-click="for()">
+						Vote for
+					</button>
+					<button class="button2 voteButton kerese" ng-click="against()">
+						Vote against
+					</button>
 				</div>
 				
 				<div class="problemDiv roads">
@@ -230,7 +280,12 @@
 					<div class="contentDiv estonia">
 						 Some street markings that are difficult to see can cause dangerous confusion.
 					</div>
-					
+					<button class="button2 voteButton estonia" ng-click="for()">
+						Vote for
+					</button>
+					<button class="button2 voteButton estonia" ng-click="against()">
+						Vote against
+					</button>
 				</div>
 
 				<div class="categoryDiv" onclick="categoryClick('accessibility')">
@@ -241,21 +296,33 @@
 					&#9662 Buildings
 				</div>
 			</div>
-
+			
 			<div id="solution" class="tabcontent">
-				<div id="topicDiv">
-					<p id="topic">problem</p>
-					<select id="selection" onchange="simulation_picker()">
-						<option value="0"> Pothole at Kerese st. 31 </option>
-						<option value="0">Worn down street markings - Estonia pst </option>
-					</select>
+				<!-- generate categoryDivs for every category -->
+				<div class="categoryDiv" onclick="categoryClick('roads')">
+					&#9662 Roads
 				</div>
-				<div id="messageDiv">
-					<p id="message">solution</p>
-					<textarea type="text" id="messageInput">
-					</textarea>
-					 
-					<button type="button" onclick="deleteMarkers();" id="reportButton" >Publish</button>
+				
+				<!-- generate problemDivs for every problem -->
+				<div class="problemDiv roads">
+					<p onclick="problemClick('stop')">Broken stop sign</p>
+					<!-- each problemDiv has a contentDiv in it -->
+					<div class="contentDiv stop">
+					</div>
+					<button class="button2 voteButton stop" ng-click="for()">
+						Vote for
+					</button>
+					<button class="button2 voteButton stop" ng-click="against()">
+						Vote against
+					</button>
+				</div>
+
+				<div class="categoryDiv" onclick="categoryClick('accessibility')">
+					&#9662 Accessibility
+				</div>
+				
+				<div class="categoryDiv" onclick="categoryClick('buildings')">
+					&#9662 Buildings
 				</div>
 			</div>
 			
@@ -269,15 +336,9 @@
 </ul>
     <div id="map" ></div>
     <script>
-
-
-  
-
-      var map;
-      var markers = [];
-
-      function initMap() {
+     function initMap() {
         var haightAshbury = {lat: 59.4370, lng: 24.7536};
+        var markers=[]; 
 
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
@@ -288,6 +349,8 @@
         // This event listener will call addMarker() when the map is clicked.
         map.addListener('click', function(event) {
           addMarker(event.latLng);
+          console.log("an");
+          $("#locationInput").val('event.latLng');
         });
 
         // Adds a marker at the center of the map.
@@ -300,15 +363,11 @@
           position: location,
           map: map
         });
-        var haightAshbury = {lat: 59.4375, lng: 24.7531};
-        var marker1 = new google.maps.Marker({
-          position: haightAshbury,
-          map: map
-        });
-        markers.push(marker);
-       markers.push(marker1);
-      }
+        $("#locationInput").val(location);
 
+        console.log(marker.position.lat);
+       markers.push(marker);
+      }
       // Sets the map on all markers in the array.
       function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
@@ -329,64 +388,12 @@
       // Deletes all markers in the array by removing references to them.
       function deleteMarkers() {
         clearMarkers();
-        markers[1] = [];
+        markers[markers.length-1] = [];
                  setMapOnAll(map);
 
       }
-   $("#sidebar").hide();
-        
-      
-var app = angular.module('minmax', []);
+         $("#sidebar").hide();
 
-app.controller('map', function ($scope,ContactService) {
- $scope.fo=2;
- $scope.for = function(){
- $scope.fo=$scope.fo+1;
- }
-  $scope.again=0;
- $scope.against = function(){
- $scope.again=$scope.again+1;
- }
-  $scope.mafunction = function(){
-   
-   $("#sidebar").toggle("slow");
-   console.log("lol");
-  }
-console.log("andro");
-$scope.places=ContactService;
-console.log($scope.places[1]);
-});
-
-
-app.service('ContactService', function () {
-
-  return {
-    "places": [
-    {
-      "lat":59.4370, 
-      "ling":24.7536,
-      "wat":1
-    },
-    {
-      "lat":59.4370, 
-      "ling":24.7536,
-      "wat":1
-    },    {
-      "lat":59.4369, 
-      "ling":24.7536,
-      "wat":1
-    },    {
-      "lat":59.4366, 
-      "ling":24.7536,
-      "wat":1
-    },    {
-      "lat":59.4367, 
-      "ling":24.7536,
-      "wat":1
-    },    
-]
-}
-});
 
     </script>
     <script async defer

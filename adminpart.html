@@ -208,7 +208,7 @@
 			<p id="placename">TALLINN</p>
 			
 			<div class="tab">
-				<button class="tablinks" onclick="openTab(event, 'report')" >SUGGEST</button>
+				<button class="tablinks report" onclick="openTab(event, 'report')" >SUGGEST</button>
 				<button class="tablinks active" onclick="openTab(event, 'vote')" >REPORTS</button>
 				<button class="tablinks" onclick="openTab(event, 'solution')">SOLUTION</button>
 			</div>
@@ -228,15 +228,6 @@
 					
 				</div>
 				
-				<div class="problemDiv roads">
-					<p onclick="problemClick('estonia')">
-					Worn down street markings - Estonia pst. 2 (0/0)
-					</p>
-					<div class="contentDiv estonia">
-						 Some street markings that are difficult to see can cause dangerous confusion.
-					</div>
-					
-				</div>
 
 				<div class="categoryDiv" onclick="categoryClick('accessibility')">
 					&#9662 Accessibility
@@ -293,14 +284,14 @@
 			</div>
 
 			<div id="solution" class="tabcontent">
-				<div id="topicDiv">
-					<p id="topic">Problem</p>
-					<select id="selection" onchange="simulation_picker()">
-						<option value="0"> Pothole at Kerese st. 31 </option>
-						<option value="0">Worn down street markings - Estonia pst </option>
-					</select>
-				</div>
+				
 				<div id="messageDiv">
+				<p id="topic">problem</p>
+					<select id="selection" onchange="simulation_picker()">
+						<option value=" "> </option>
+						<option value="roads">sample problem</option>
+						<option value="accessibility">Pothole at Kerese st. 31</option>
+					</select>
 					<p id="message">Solution</p>
 					<textarea type="text" id="messageInput">
 					</textarea>
@@ -358,8 +349,9 @@ var iconBase = 'img/';
           map: map,
           icon: iconBase+'lpin.png'
         });
-        markers.push(marker);
        markers.push(marker1);
+               markers.push(marker);
+
       }
 
       // Sets the map on all markers in the array.
@@ -381,10 +373,19 @@ var iconBase = 'img/';
 
       // Deletes all markers in the array by removing references to them.
       function deleteMarkers() {
+
         clearMarkers();
         markers[1] = [];
-                 setMapOnAll(map);
 
+                         setMapOnAll(map);
+ alert("Solution has been added");
+
+      }
+      function showreport(){
+      	        $('report').addClass('active');
+
+        openTab('report');
+console.log("dafug guy");
       }
    $("#sidebar").hide();
         

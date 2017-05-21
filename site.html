@@ -222,7 +222,7 @@
 			
 			<div class="tab">
 				<button class="tablinks" onclick="openTab(event, 'report')" >REPORT</button>
-				<button class="tablinks active" onclick="openTab(event, 'vote')">VOTE</button>
+				<button class="vote tablinks active" onclick="openTab(event, 'vote')">VOTE</button>
 				<button class="tablinks" onclick="openTab(event, 'solution')">SOLVED</button>
 			</div>
 			
@@ -246,9 +246,9 @@
 				</div>
 				<div id="messageDiv">
 					<p id="message">Message</p>
-					<textarea type="text" id="messageInput">
+					<textarea type="text" ng-model="andro" id="messageInput">
 					</textarea>
-					<button type="button" id="reportButton" onclick="onReport">Suggest</button>
+					<button type="button" id="reportButton" onclick="onReport()">Suggest</button>
 				</div>
 			</div>
 			
@@ -274,11 +274,11 @@
 				</div>
 				
 				<div class="problemDiv roads">
-					<p onclick="problemClick('estonia')">
-					Worn down street markings - Estonia pst. 2 (0/0)
+					<p  onclick="problemClick('estonia')">
+					{{andro}} (0/0)
 					</p>
 					<div class="contentDiv estonia">
-						 Some street markings that are difficult to see can cause dangerous confusion.
+						 Sample problem
 					</div>
 					<button class="button2 voteButton estonia" ng-click="for()">
 						Vote for
@@ -309,12 +309,7 @@
 					<!-- each problemDiv has a contentDiv in it -->
 					<div class="contentDiv stop">
 					</div>
-					<button class="button2 voteButton stop" ng-click="for()">
-						Vote for
-					</button>
-					<button class="button2 voteButton stop" ng-click="against()">
-						Vote against
-					</button>
+
 				</div>
 
 				<div class="categoryDiv" onclick="categoryClick('accessibility')">
@@ -396,7 +391,10 @@ console.log(document.cookie);
       }
          $("#sidebar").hide();
 
-
+    function onReport(){
+    	openTab(event, 'vote');
+    	$('.vote').addClass("active");
+    }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCah47EsmsSk7KX9D_7xlV03MRT6PVxatk&callback=initMap">

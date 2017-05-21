@@ -220,10 +220,10 @@
 				
 				<!-- generate problemDivs for every problem -->
 				<div class="problemDiv roads">
-					<p onclick="problemClick('kerese')">Pothole at Kerese st. 31 ({{fo}}/{{again}})</p>
+					<p onclick="problemClick('kerese')">Worn down street markings - Estonia pst. 2 ({{fo}}/{{again}})</p>
 					<!-- each problemDiv has a contentDiv in it -->
 					<div class="contentDiv kerese">
-						 Big pot hole in the ground, must be becaus of the recent rains. I saw a car dent their bumper against it. Please fix it!
+						 {{andro}}
 					</div>
 					
 				</div>
@@ -286,14 +286,14 @@
 			<div id="solution" class="tabcontent">
 				
 				<div id="messageDiv">
-				<p id="topic">problem</p>
+				<p id="topic" ng-model="me">problem</p>
 					<select id="selection" onchange="simulation_picker()">
 						<option value=" "> </option>
-						<option value="roads">sample problem</option>
-						<option value="accessibility">Pothole at Kerese st. 31</option>
+						<option value="sample problem">sample problem</option>
+						<option value="worn down street markings">worn down street markings</option>
 					</select>
 					<p id="message">Solution</p>
-					<textarea type="text" id="messageInput">
+					<textarea type="text" ng-model="andro" id="messageInput">
 					</textarea>
 					<button type="button" onclick="deleteMarkers();" id="reportButton" >
 						Mark as solved
@@ -326,7 +326,10 @@ var iconBase = 'img/';
           center: haightAshbury,
           mapTypeId: 'terrain'
         });
-
+       var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
         // This event listener will call addMarker() when the map is clicked.
         map.addListener('click', function(event) {
           addMarker(event.latLng);

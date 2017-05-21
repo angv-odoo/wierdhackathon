@@ -341,7 +341,7 @@
         var markers=[]; 
 
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
+          zoom: 14,
           center: haightAshbury,
           mapTypeId: 'terrain'
         });
@@ -351,6 +351,8 @@
           addMarker(event.latLng);
           console.log("an");
           $("#locationInput").val('event.latLng');
+            document.cookie = "username=event.latLng";
+console.log(document.cookie);
         });
 
         // Adds a marker at the center of the map.

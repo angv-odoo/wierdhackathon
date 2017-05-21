@@ -13,7 +13,7 @@
 
     <style>
        #map {
-        height: 600px;
+        height: 670px;
         width: 72%;
        }
        body{
@@ -37,7 +37,7 @@
 			src: url(Roboto-Regular.ttf);
 		}
 		#sidebar{
-			height: 600px;
+			height: 650px;
 			width: 25%;
 			float: left;
 			background-color: rgba(51, 87, 134, 100);
@@ -79,7 +79,7 @@
 			margin-top: 20px;
 		}
 		#locateDiv{
-			margin-top: 20px;
+			margin-top: 30px;
 			width: 90%;
 		}
 		#authenticateDiv{
@@ -87,7 +87,7 @@
 			width: 70%;
 		}
 		#topicDiv {
-			margin-top: 30px;
+			margin-top: 60px;
 		}
 		#messageDiv{
 			margin-top: 5px;
@@ -131,7 +131,7 @@
 			cursor: pointer;
 			padding: 7px 0px;
 			transition: 0.3s;
-			width: 50%;
+			width: 33.3%;
 			border-radius: 0px;
 			font-size: 16px;
 		}
@@ -182,20 +182,24 @@
 		.big {
 			font-size: 24px;
 		}
-    .button2{
-      background-color:rgba(51, 87, 134, 100);
-      margin:10px;
-      width:70%;
-    }
+		.button2{
+		  background-color:rgba(51, 87, 134, 100);
+		  margin:10px;
+		  width:70%;
+		}
+		#solution {
+			margin: auto;
+			width: 75%;
+		}
     </style>
   </head>
   <script type="text/javascript" src="libs/angular/angular.js"></script>
    <body ng-controller="map">
    <div>
    <ul>
-   <span class="hehehe">TRAAAAKI</span>
+   <img src="blue_logo.png" height="40px" style="margin:4px">
   <li><a href="site.html">User</a></li>
-  <li><a href="adminpart.html">government</a></li>
+  <li><a href="adminpart.html">Public Servant</a></li>
 </ul>
 </div>
 <div class="containing">
@@ -204,8 +208,9 @@
 			<p id="placename">TALLINN</p>
 			
 			<div class="tab">
-				<button class="tablinks" onclick="openTab(event, 'report')" >REPORT</button>
-				<button class="tablinks active" onclick="openTab(event, 'solution')">SOLUTION</button>
+				<button class="tablinks" onclick="openTab(event, 'report')" >SUGGEST</button>
+				<button class="tablinks active" onclick="openTab(event, 'vote')" >REPORTS</button>
+				<button class="tablinks" onclick="openTab(event, 'solution')">SOLUTION</button>
 			</div>
 			
 			<div id="report" class="tabcontent">
@@ -241,21 +246,67 @@
 					&#9662 Buildings
 				</div>
 			</div>
+			
+			<div id="vote" class="tabcontent">
+				<!-- generate categoryDivs for every category -->
+				<div class="categoryDiv" onclick="categoryClick('roads')">
+					&#9662 Roads
+				</div>
+				
+				<!-- generate problemDivs for every problem -->
+				<div class="problemDiv roads">
+					<p onclick="problemClick('kerese')">Pothole at Kerese st. 31 ({{fo}}/{{again}})</p>
+					<!-- each problemDiv has a contentDiv in it -->
+					<div class="contentDiv kerese">
+						 Big pot hole in the ground, must be becaus of the recent rains. I saw a car dent their bumper against it. Please fix it!
+					</div>
+					<!--<button class="button2 voteButton kerese" ng-click="for()">
+						Vote for
+					</button>
+					<button class="button2 voteButton kerese" ng-click="against()">
+						Vote against
+					</button>-->
+				</div>
+				
+				<div class="problemDiv roads">
+					<p onclick="problemClick('estonia')">
+					Worn down street markings - Estonia pst. 2 ({{fo}}/{{again}})
+					</p>
+					<div class="contentDiv estonia">
+						 Some street markings that are difficult to see can cause dangerous confusion.
+					</div>
+					<!--<button class="button2 voteButton estonia" ng-click="for()">
+						Vote for
+					</button>
+					<button class="button2 voteButton estonia" ng-click="against()">
+						Vote against
+					</button>-->
+				</div>
+
+				<div class="categoryDiv" onclick="categoryClick('accessibility')">
+					&#9662 Accessibility
+				</div>
+				
+				<div class="categoryDiv" onclick="categoryClick('buildings')">
+					&#9662 Buildings
+				</div>
+			</div>
 
 			<div id="solution" class="tabcontent">
 				<div id="topicDiv">
-					<p id="topic">problem</p>
+					<p id="topic">Problem</p>
 					<select id="selection" onchange="simulation_picker()">
 						<option value="0"> Pothole at Kerese st. 31 </option>
 						<option value="0">Worn down street markings - Estonia pst </option>
 					</select>
 				</div>
 				<div id="messageDiv">
-					<p id="message">solution</p>
+					<p id="message">Solution</p>
 					<textarea type="text" id="messageInput">
 					</textarea>
-					 
-					<button type="button" onclick="deleteMarkers();" id="reportButton" >Publish</button>
+					<button type="button" onclick="deleteMarkers();" id="reportButton" >
+						Mark as solved
+					</button>
 				</div>
 			</div>
 			
